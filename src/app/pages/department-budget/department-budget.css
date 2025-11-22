@@ -101,7 +101,27 @@
   cursor: pointer;
 }
 
+/* MODAL */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
 
+.modal-content {
+  background: #fff;
+  padding: 30px;
+  border-radius: 16px;
+  width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+/* FORM FIELDS */
 .modal-box {
   background: white;
   padding: 30px;
@@ -145,21 +165,68 @@
   border: none;
   border-radius: 8px;
 }
-.modal {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.45);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999; /* Makes modal appear above navbar */
+
+/* ---------------------- */
+/* RESPONSIVE DESIGN FIXES */
+/* ---------------------- */
+
+@media (max-width: 992px) {
+  .budget-page {
+    padding: 25px;
+  }
+
+  .summary-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .charts {
+    flex-direction: column;
+  }
+
+  .chart-box {
+    width: 100%;
+  }
+
+  .budget-table th,
+  .budget-table td {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .modal-content {
+    width: 80%;
+  }
 }
 
-.modal-content {
-  background: #fff;
-  padding: 30px;
-  border-radius: 16px;
-  width: 600px;
-  max-height: 90vh; /* Makes full form visible */
-  overflow-y: auto; /* Scroll only inside the modal */
+@media (max-width: 600px) {
+  .budget-page {
+    padding: 20px 10px;
+  }
+
+  .summary-container {
+    grid-template-columns: 1fr;
+  }
+
+  .summary-card {
+    margin-bottom: 10px;
+  }
+
+  .add-btn {
+    width: 100%;
+  }
+
+  .budget-table th,
+  .budget-table td {
+    font-size: 13px;
+    padding: 8px;
+  }
+
+  .chart-box {
+    padding: 12px;
+  }
+
+  .modal-content {
+    width: 95%;
+    padding: 20px;
+  }
 }

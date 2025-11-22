@@ -136,3 +136,40 @@
   padding: 12px;
   border-radius: 8px;
 }
+/* Responsive Design */
+@media (max-width: 992px) {
+  .summary-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .add-btn {
+    width: 100%;
+  }
+  .payroll-container {
+    padding: 25px;
+  }
+  .page-title {
+    font-size: 26px;
+  }
+}
+
+@media (max-width: 600px) {
+  .summary-row {
+    grid-template-columns: 1fr;
+  }
+  .payroll-table th,
+  .payroll-table td {
+    font-size: 14px;
+    padding: 8px;
+  }
+  .chart-box {
+    padding: 10px;
+  }
+  .modal-box {
+    width: 90%;
+    padding: 20px;
+  }
+  .primary, .secondary {
+    font-size: 14px;
+    padding: 10px;
+  }
+}

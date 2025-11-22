@@ -105,3 +105,37 @@ input:focus, select:focus, textarea:focus {
   font-size: 14px;
   text-align: center;
 }
+/* Responsive Design */
+@media (max-width: 992px) {
+  .signup-container {
+    padding: 30px 15px;
+  }
+  .signup-card {
+    width: 90%;
+    padding: 28px;
+  }
+  h2 {
+    font-size: 24px;
+  }
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .signup-card {
+    width: 100%;
+    padding: 22px;
+  }
+  h2 {
+    font-size: 22px;
+  }
+  input, select, textarea {
+    font-size: 14px;
+    padding: 9px 10px;
+  }
+  .signup-btn {
+    font-size: 15px;
+    padding: 10px;
+  }
+}

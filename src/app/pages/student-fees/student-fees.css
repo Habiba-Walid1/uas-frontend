@@ -197,3 +197,79 @@
   align-items: center;
   gap: 8px;
 }
+/* Responsive Design */
+@media (max-width: 992px) {
+  .fees-page {
+    padding: 25px;
+  }
+
+  .admin-summary {
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+  .summary-card {
+    flex: 1 1 45%;
+    margin-bottom: 10px;
+  }
+
+  .search-bar {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .search-bar input {
+    width: 80%;
+  }
+
+  .fees-table {
+    width: 100%;
+    font-size: 15px;
+  }
+
+  .modal-box {
+    width: 80%;
+    padding: 22px;
+  }
+}
+
+@media (max-width: 600px) {
+  .title {
+    font-size: 22px;
+  }
+
+  .fees-page {
+    padding: 20px 10px;
+  }
+
+  .summary-card {
+    flex: 1 1 100%;
+  }
+
+  .fees-table th,
+  .fees-table td {
+    font-size: 13px;
+    padding: 8px;
+  }
+
+  .actions button {
+    font-size: 12px;
+    padding: 5px 10px;
+  }
+
+  .modal-box {
+    width: 95%;
+    padding: 18px;
+  }
+
+  .pay-btn,
+  .cancel-btn {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .search-bar input,
+  .search-bar button {
+    width: 100%;
+  }
+}

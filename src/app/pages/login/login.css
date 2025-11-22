@@ -73,3 +73,34 @@ input {
     width: 100%;
   }
 }
+/* Responsive Enhancements */
+@media (max-width: 992px) {
+  .login-wrapper {
+    padding: 40px 20px;
+  }
+  .login-card {
+    width: 80%;
+  }
+  h2 {
+    font-size: 26px;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-card {
+    width: 100%;
+    padding: 25px;
+  }
+  h2 {
+    font-size: 22px;
+  }
+  input {
+    font-size: 14px;
+    padding: 10px;
+  }
+  .login-btn {
+    font-size: 15px;
+    padding: 12px;
+  }
+}
+

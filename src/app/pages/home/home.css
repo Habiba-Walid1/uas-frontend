@@ -122,3 +122,42 @@
   0% { opacity: 0; transform: scale(0.95); }
   100% { opacity: 1; transform: scale(1); }
 }
+/* =====================
+   Responsive Adjustments
+   ===================== */
+@media (max-width: 992px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+  }
+  .hero-content {
+    max-width: 100%;
+  }
+  .hero h1 {
+    font-size: 36px;
+  }
+  .subtitle {
+    font-size: 16px;
+  }
+  .btn-group {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .home-wrapper {
+    padding: 30px 20px;
+  }
+  .hero h1 {
+    font-size: 28px;
+  }
+  .subtitle {
+    font-size: 15px;
+  }
+  .hero-image {
+    width: 100%;
+  }
+  .actions button, .hero-btn {
+    width: 100%;
+  }
+}
