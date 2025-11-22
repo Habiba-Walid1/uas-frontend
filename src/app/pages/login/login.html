@@ -1,0 +1,26 @@
+<div class="login-wrapper">
+  <div class="login-card">
+
+    <h2>Welcome Back</h2>
+    <p class="subtitle">Login to access your dashboard</p>
+
+    <form (ngSubmit)="onLogin()">
+
+      <div class="form-group">
+        <label>Username</label>
+        <input type="text" [(ngModel)]="form.username" name="username" required>
+      </div>
+
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" [(ngModel)]="form.password" name="password" required>
+      </div>
+
+      <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+      <button class="login-btn" type="submit">Login</button>
+
+    </form>
+
+  </div>
+</div>

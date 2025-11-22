@@ -1,0 +1,96 @@
+<div class="profile-wrapper">
+
+  <div class="profile-card">
+
+    <!-- Header -->
+    <div class="header">
+      <img *ngIf="user.picture" [src]="user.picture" class="profile-img" />
+
+      <div class="header-text">
+        <h2>{{ user.name }}</h2>
+        <p class="role">{{ user.role | titlecase }}</p>
+      </div>
+    </div>
+
+    <!-- Info Grid -->
+    <div class="info-grid">
+      <div class="info-item">
+        <label>Username</label>
+        <p>{{ user.username }}</p>
+      </div>
+
+      <div class="info-item">
+        <label>Email</label>
+        <p>{{ user.email }}</p>
+      </div>
+
+      <div class="info-item">
+        <label>Credit Card</label>
+        <p>**** **** **** {{ user.creditCard?.slice(-4) }}</p>
+      </div>
+
+      <div class="info-item wide">
+        <label>Preferences</label>
+        <p>{{ user.preferences || 'None' }}</p>
+      </div>
+    </div>
+
+    <!-- Edit Button -->
+    <button class="action-btn edit" (click)="openEdit()">Edit Profile</button>
+
+    <!-- STUDENT BUTTON -->
+    <button 
+      *ngIf="user.role === 'student'" 
+      routerLink="/student-fees" 
+      class="action-btn">
+      View Fees
+    </button>
+
+    <!-- ACCOUNTING BUTTONS -->
+    <div *ngIf="user.role === 'accounting'" class="role-actions">
+      <button routerLink="/staff-payroll" class="role-btn">Payroll</button>
+      <button routerLink="/department-budget" class="role-btn">Budget</button>
+    </div>
+
+    <!-- ADMIN BUTTONS -->
+    <div *ngIf="user.role === 'admin'" class="role-actions">
+      <button routerLink="/staff-payroll" class="role-btn">Payroll</button>
+      <button routerLink="/department-budget" class="role-btn">Budget</button>
+      <button routerLink="/student-fees" class="role-btn">Fees</button>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- EDIT MODAL -->
+<div class="modal" *ngIf="editing">
+  <div class="modal-content">
+
+    <h3>Edit Profile</h3>
+
+    <label>Name</label>
+    <input [(ngModel)]="editForm.name" />
+
+    <label>Email</label>
+    <input [(ngModel)]="editForm.email" />
+
+    <label>Username</label>
+    <input [(ngModel)]="editForm.username" />
+
+    <label>Credit Card</label>
+    <input [(ngModel)]="editForm.creditCard" />
+
+    <label>Preferences</label>
+    <textarea [(ngModel)]="editForm.preferences"></textarea>
+
+    <label>Change Picture</label>
+    <input type="file" (change)="changePicture($event)" />
+
+    <div class="modal-buttons">
+      <button class="save-btn" (click)="saveChanges()">Save</button>
+      <button class="cancel-btn" (click)="closeEdit()">Cancel</button>
+    </div>
+
+  </div>
+</div>

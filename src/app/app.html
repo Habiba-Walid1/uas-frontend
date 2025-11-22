@@ -1,0 +1,87 @@
+ <style>
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 40px;
+    background: linear-gradient(to right, #1E3A8A, #3B82F6);
+    font-size: 17px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  }
+
+  .logo {
+    cursor: pointer;
+    font-size: 24px;
+    font-weight: 700;
+    color: white;
+    letter-spacing: 0.5px;
+    transition: 0.3s ease;
+  }
+
+  .logo:hover {
+    opacity: 0.85;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+  }
+
+  .nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    position: relative;
+    padding-bottom: 4px;
+    transition: color 0.2s ease;
+  }
+
+  .nav-links a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    height: 2px;
+    width: 0%;
+    background: white;
+    transition: width 0.25s ease-in-out;
+    border-radius: 2px;
+  }
+
+  .nav-links a:hover::after {
+    width: 100%;
+  }
+
+  .nav-links a:hover {
+    color: #e2e8ff;
+  }
+</style>
+
+<nav class="navbar">
+  <div routerLink="" class="logo">UAS Portal</div>
+
+  <div class="nav-links">
+    <a routerLink="">Home</a>
+
+    <a *ngIf="!isLoggedIn" routerLink="/login">Login</a>
+    <a *ngIf="!isLoggedIn" routerLink="/signup">Signup</a>
+
+    <a *ngIf="isLoggedIn" routerLink="/profile">Profile</a>
+
+    <a *ngIf="userRole==='student'" routerLink="/student-fees">Fees</a>
+
+    <a *ngIf="userRole==='accounting'" routerLink="/staff-payroll">Payroll</a>
+    <a *ngIf="userRole==='accounting'" routerLink="/department-budget">Budget</a>
+
+    <a *ngIf="userRole==='admin'" routerLink="/student-fees">Fees</a>
+    <a *ngIf="userRole==='admin'" routerLink="/staff-payroll">Payroll</a>
+    <a *ngIf="userRole==='admin'" routerLink="/department-budget">Budget</a>
+
+    <a *ngIf="isLoggedIn" (click)="logout()" class="logout-btn">Logout</a>
+  </div>
+</nav>
+
+<router-outlet></router-outlet>

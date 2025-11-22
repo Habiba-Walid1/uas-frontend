@@ -1,0 +1,59 @@
+<div class="home-wrapper">
+
+  <!-- PUBLIC HOMEPAGE -->
+  <div *ngIf="!isLoggedIn" class="hero">
+
+    <div class="hero-content">
+      <h1>University Accounting System</h1>
+
+      <div class="underline"></div>
+
+      <p class="subtitle">
+        A clean and simple platform for managing student fees, payroll, 
+        and departmental budgets — designed for students, accounting staff, 
+        and administrators.
+      </p>
+
+      <div class="btn-group">
+        <button routerLink="/login" class="hero-btn">Login</button>
+        <button routerLink="/signup" class="hero-btn">Create Account</button>
+      </div>
+    </div>
+
+    <img 
+      src="https://i.imgur.com/8Yq4PzK.png"
+      class="hero-image"
+    />
+
+  </div>
+
+
+
+  <!-- LOGGED-IN HOMEPAGE -->
+  <div *ngIf="isLoggedIn" class="dashboard">
+
+    <h2>Welcome back, {{ user.name }} 👋</h2>
+    <p class="role">Role: {{ user.role | titlecase }}</p>
+
+    <!-- STUDENT -->
+    <div *ngIf="user.role === 'student'" class="actions">
+      <button routerLink="/student-fees">View Fees</button>
+      <button routerLink="/profile">View Profile</button>
+    </div>
+
+    <!-- ACCOUNTING -->
+    <div *ngIf="user.role === 'accounting'" class="actions">
+      <button routerLink="/staff-payroll">Staff Payroll</button>
+      <button routerLink="/department-budget">Department Budget</button>
+    </div>
+
+    <!-- ADMIN -->
+    <div *ngIf="user.role === 'admin'" class="actions">
+      <button routerLink="/student-fees">Manage Fees</button>
+      <button routerLink="/staff-payroll">Payroll</button>
+      <button routerLink="/department-budget">Budget</button>
+    </div>
+
+  </div>
+
+</div>

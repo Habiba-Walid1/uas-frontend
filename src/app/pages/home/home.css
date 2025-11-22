@@ -1,0 +1,124 @@
+.home-wrapper {
+  padding: 60px 80px;
+}
+
+/* -------------------------- */
+/* PUBLIC HERO                */
+/* -------------------------- */
+
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+}
+
+.hero-content {
+  max-width: 550px;
+  animation: fadeInUp 0.8s ease;
+}
+
+.hero h1 {
+  font-size: 48px;
+  font-weight: 700;
+  color: #1E3A8A;
+  margin-bottom: 10px;
+}
+
+.underline {
+  width: 80px;
+  height: 4px;
+  background: #3B82F6;
+  margin: 12px 0 30px 0;
+  border-radius: 4px;
+}
+
+.subtitle {
+  font-size: 18px;
+  line-height: 1.7;
+  color: #444;
+  margin-bottom: 40px;
+}
+
+.btn-group {
+  display: flex;
+  gap: 20px;
+}
+
+.hero-btn {
+  padding: 14px 30px;
+  font-size: 17px;
+  border: none;
+  border-radius: 10px;
+  background: #3B82F6;
+  color: white;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.hero-btn:hover {
+  background: #1E3A8A;
+  transform: translateY(-3px);
+}
+
+.hero-image {
+  width: 420px;
+  max-width: 100%;
+  animation: fadeIn 1.2s ease;
+  user-select: none;
+}
+
+
+/* -------------------------- */
+/* DASHBOARD (LOGGED IN)      */
+/* -------------------------- */
+
+.dashboard {
+  text-align: center;
+  animation: fadeIn 0.6s ease;
+}
+
+.dashboard h2 {
+  font-size: 32px;
+  color: #1E3A8A;
+}
+
+.role {
+  margin-bottom: 30px;
+  color: #555;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.actions button {
+  padding: 14px 30px;
+  font-size: 17px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  background: #3B82F6;
+  color: white;
+  transition: 0.2s ease;
+}
+
+.actions button:hover {
+  background: #1E3A8A;
+  transform: translateY(-3px);
+}
+
+
+/* ANIMATIONS */
+
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(40px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; transform: scale(0.95); }
+  100% { opacity: 1; transform: scale(1); }
+}
