@@ -1,0 +1,112 @@
+<div class="budget-container">
+
+  <h1 class="page-title">Department Budget Management</h1>
+
+  <!-- KPI CARDS -->
+  <div class="stats-row">
+    <div class="stat income">Income: ${{ totalIncome }}</div>
+    <div class="stat expense">Expenses: ${{ totalExpenses }}</div>
+    <div class="stat balance">Net Balance: ${{ netBalance }}</div>
+  </div>
+
+  <!-- Search + Buttons -->
+  <div class="top-actions">
+    <input type="text" placeholder="Search..." (input)="search($event.target.value)">
+    <button class="add-btn" (click)="openAddModal()">+ Add Entry</button>
+    <button class="export-btn" (click)="exportReport()">Export Report</button>
+  </div>
+
+  <div class="chart-grid">
+
+  <!-- PIE CHART -->
+  <div class="chart-card">
+    <h3>Income vs Expenses</h3>
+
+    <ngx-charts-pie-chart
+      [results]="pieData"
+      [legend]="true"
+      [labels]="true"
+      [gradient]="false">
+    </ngx-charts-pie-chart>
+  </div>
+
+  <!-- BAR CHART -->
+  <div class="chart-card">
+    <h3>Monthly Net Balance</h3>
+
+    <ngx-charts-bar-vertical
+      [results]="barData"
+      [xAxis]="true"
+      [yAxis]="true"
+      [showXAxisLabel]="true"
+      [showYAxisLabel]="true"
+      xAxisLabel="Month"
+      yAxisLabel="Net $">
+    </ngx-charts-bar-vertical>
+  </div>
+
+
+
+
+  </div>
+
+  <!-- TABLE -->
+  <div class="table-wrapper">
+    <table class="budget-table">
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Title</th>
+          <th>Amount</th>
+          <th>Date</th>
+          <th>Department</th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let r of filtered">
+          <td class="type" [class.income]="r.type === 'income'" [class.expense]="r.type === 'expense'">
+            {{ r.type | titlecase }}
+          </td>
+          <td>{{ r.title }}</td>
+          <td>${{ r.amount }}</td>
+          <td>{{ r.date }}</td>
+          <td>{{ r.department }}</td>
+          <td><button class="delete-btn" (click)="deleteRecord(r.id)">Delete</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- MODAL -->
+  <div class="overlay" *ngIf="modalOpen">
+    <div class="modal">
+      <h2>Add Budget Entry</h2>
+
+      <label>Type</label>
+      <select [(ngModel)]="entryType">
+        <option value="income">Income</option>
+        <option value="expense">Expense</option>
+      </select>
+
+      <label>Title</label>
+      <input [(ngModel)]="title">
+
+      <label>Amount</label>
+      <input type="number" [(ngModel)]="amount">
+
+      <label>Date</label>
+      <input type="date" [(ngModel)]="date">
+
+      <label>Department</label>
+      <input [(ngModel)]="department">
+
+      <div class="modal-actions">
+        <button class="primary-btn" (click)="saveRecord()">Save</button>
+        <button class="secondary-btn" (click)="closeModal()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+</div>

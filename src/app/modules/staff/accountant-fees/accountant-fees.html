@@ -1,0 +1,89 @@
+<div class="fees-container">
+
+  <h1 class="page-title">Manage Student Fees</h1>
+
+  <!-- Search bar -->
+  <div class="search-row">
+    <input
+      type="text"
+      placeholder="Search by student or fee..."
+      [(ngModel)]="searchText"
+      (input)="search()" name="searchText"
+    />
+
+    <button class="add-btn" (click)="openAddModal()">+ Add Invoice</button>
+  </div>
+
+  <!-- Fees Table -->
+  <div class="table-wrapper">
+    <table class="fees-table">
+      <thead>
+        <tr>
+          <th>Student</th>
+          <th>Invoice Name</th>
+          <th>Amount</th>
+          <th>Due Date</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let fee of filteredFees">
+          <td>{{ fee.student }}</td>
+          <td>{{ fee.name }}</td>
+          <td>${{ fee.amount }}</td>
+          <td>{{ fee.dueDate }}</td>
+
+          <td>
+            <span [class.paid]="fee.status === 'PAID'"
+                  [class.unpaid]="fee.status === 'UNPAID'">
+              {{ fee.status }}
+            </span>
+          </td>
+
+          <td class="actions">
+            <button class="small-btn" (click)="openEditModal(fee)">Edit</button>
+            <button class="small-btn" (click)="toggleStatus(fee)">
+              {{ fee.status === 'PAID' ? 'Mark Unpaid' : 'Mark Paid' }}
+            </button>
+            <button class="small-btn" (click)="downloadInvoice(fee)">Invoice</button>
+            <button class="delete-btn" (click)="deleteFee(fee.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+
+    </table>
+  </div>
+
+  <!-- Modal -->
+  <div class="overlay" *ngIf="modalOpen">
+    <div class="modal">
+
+      <h2>{{ editing ? 'Edit Invoice' : 'Add New Invoice' }}</h2>
+
+      <div class="modal-grid">
+
+        <label>Invoice Name</label>
+        <input [(ngModel)]="feeName" />
+
+        <label>Amount</label>
+        <input type="number" [(ngModel)]="feeAmount" />
+
+        <label>Due Date</label>
+        <input type="date" [(ngModel)]="feeDueDate" />
+
+        <label>Student Username</label>
+        <input [(ngModel)]="feeStudent" placeholder="must match exact username" />
+
+      </div>
+
+      <div class="modal-buttons">
+        <button class="primary-btn" (click)="saveFee()">Save</button>
+        <button class="secondary-btn" (click)="closeModal()">Cancel</button>
+      </div>
+
+    </div>
+  </div>
+
+</div>

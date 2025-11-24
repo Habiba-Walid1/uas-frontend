@@ -1,59 +1,72 @@
-<div class="home-wrapper">
+<div class="home-container">
 
-  <!-- PUBLIC HOMEPAGE -->
-  <div *ngIf="!isLoggedIn" class="hero">
 
-    <div class="hero-content">
-      <h1>University Accounting System</h1>
+  <!-- HERO SECTION -->
+  <section class="hero-section">
+    <div class="hero-text">
+      <h1 class="hero-title">
+        Welcome to <span>UniPay</span>
+      </h1>
 
-      <div class="underline"></div>
-
-      <p class="subtitle">
-        A clean and simple platform for managing student fees, payroll, 
-        and departmental budgets — designed for students, accounting staff, 
-        and administrators.
+      <p class="hero-subtitle">
+        The official university financial management system for students, staff, accountants, and administrators.
+        Access payments, payroll, budgets, and records — all in one secure and modern platform.
       </p>
 
-      <div class="btn-group">
-        <button routerLink="/login" class="hero-btn">Login</button>
-        <button routerLink="/signup" class="hero-btn">Create Account</button>
+      <!-- QUICK ACTIONS -->
+      <div class="hero-actions">
+        <button class="create-btn" routerLink="/login">View My Profile</button>
+        <button class="ghost-btn" routerLink="/signup">Create an Account</button>
       </div>
     </div>
-
-    <img 
-      src="https://i.imgur.com/8Yq4PzK.png"
-      class="hero-image"
-    />
-
-  </div>
+  </section>
 
 
+  <!-- SYSTEM MODULES -->
+  <section class="features-section">
+    <h2 class="section-title">Core Modules</h2>
 
-  <!-- LOGGED-IN HOMEPAGE -->
-  <div *ngIf="isLoggedIn" class="dashboard">
+    <div class="features-grid">
+      <div class="fcard">
+        <i class="icon">💳</i>
+        <h3>Payments & Fees</h3>
+        <p>Pay tuition and fees, view invoices, and download receipts instantly.</p>
+      </div>
 
-    <h2>Welcome back, {{ user.name }} 👋</h2>
-    <p class="role">Role: {{ user.role | titlecase }}</p>
+      <div class="fcard">
+        <i class="icon">🧾</i>
+        <h3>Payroll & Staff Finance</h3>
+        <p>Access salary details, deductions, allowances, and monthly reports.</p>
+      </div>
 
-    <!-- STUDENT -->
-    <div *ngIf="user.role === 'student'" class="actions">
-      <button routerLink="/student-fees">View Fees</button>
-      <button routerLink="/profile">View Profile</button>
+      <div class="fcard">
+        <i class="icon">📊</i>
+        <h3>Budget Analytics</h3>
+        <p>Monitor departmental budgets through live charts and insights.</p>
+      </div>
+
+      <div class="fcard">
+        <i class="icon">👤</i>
+        <h3>User Profiles</h3>
+        <p>Manage personal information and view role-based permissions.</p>
+      </div>
     </div>
+  </section>
 
-    <!-- ACCOUNTING -->
-    <div *ngIf="user.role === 'accounting'" class="actions">
-      <button routerLink="/staff-payroll">Staff Payroll</button>
-      <button routerLink="/department-budget">Department Budget</button>
-    </div>
 
-    <!-- ADMIN -->
-    <div *ngIf="user.role === 'admin'" class="actions">
-      <button routerLink="/student-fees">Manage Fees</button>
-      <button routerLink="/staff-payroll">Payroll</button>
-      <button routerLink="/department-budget">Budget</button>
-    </div>
 
-  </div>
 
+  <!-- CTA / LOGIN REDIRECT -->
+  <section class="cta-section">
+    <h2>Access Your Financial Dashboard Now!</h2>
+
+    <button routerLink="/login" class="cta-big-btn">
+      Join UniPay
+    </button>
+  </section>
+
+  <!-- BACKGROUND ORBS -->
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
 </div>

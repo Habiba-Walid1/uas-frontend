@@ -1,20 +1,24 @@
+import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
 
 export const roleGuard: CanActivateFn = (route, state) => {
-  const router = new Router();
-  const user = JSON.parse(localStorage.getItem('user') || '{}');
-  const role = user.role || 'guest';
+  const router = inject(Router);
 
-  // protect admin pages
-  if ((state.url.includes('department-budget') || state.url.includes('staff-payroll')) && role !== 'admin') {
-    alert('Access denied: Admins only');
-    router.navigate(['/']);
+  // get current logged-in user
+  const currentUser = localStorage.getItem('currentUser');
+  const user = currentUser ? JSON.parse(currentUser) : null;
+
+  if (!user) {
+    // Not logged in → redirect to login
+    router.navigate(['/login']);
     return false;
   }
 
-  // protect student-only page
-  if (state.url.includes('student-fees') && role !== 'student' && role !== 'admin') {
-    alert('Access denied: Students only');
+  // Check allowed roles from the route data
+  const allowedRoles = route.data?.['roles'] as string[] | undefined;
+
+  if (allowedRoles && !allowedRoles.includes(user.role)) {
+    // user exists but not allowed
     router.navigate(['/']);
     return false;
   }

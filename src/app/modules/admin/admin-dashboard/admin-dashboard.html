@@ -1,0 +1,35 @@
+<div class="admin-container">
+
+  <h1 class="page-title">Admin Dashboard</h1>
+
+  <!-- KPI ROW -->
+  <div class="kpi-grid">
+
+    <div class="kpi-card">
+      <label>Total Users</label>
+      <h2>{{ totalUsers }}</h2>
+    </div>
+
+    <div class="kpi-card">
+      <label>Total Students</label>
+      <h2>{{ totalStudents }}</h2>
+    </div>
+
+    <div class="kpi-card">
+      <label>Total Staff</label>
+      <h2>{{ totalStaff }}</h2>
+    </div>
+
+    <div class="kpi-card">
+      <label>Total Revenue</label>
+      <h2>${{ totalRevenue }}</h2>
+    </div>
+
+  </div>
+
+  <!-- Quick Actions -->
+  <div class="actions-row">
+    <button class="action-btn" routerLink="/admin/manage-users">Manage Users</button>
+  </div>
+
+</div>

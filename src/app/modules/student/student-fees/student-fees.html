@@ -1,0 +1,106 @@
+<div class="fees-container">
+
+  <h1 class="title">Student Fees</h1>
+
+  <!-- Search -->
+  <input
+    type="text"
+    class="search-box"
+    placeholder="Search fees or students..."
+    [(ngModel)]="searchText"
+    (input)="search()"
+  />
+
+  <!-- OUTSTANDING FEES -->
+  <section class="card-section">
+    <h2>Outstanding Fees</h2>
+
+    <table class="fees-table">
+      <thead>
+        <tr>
+          <th>Invoice</th>
+          <th>Due</th>
+          <th>Amount</th>
+          <th>Status</th>
+          <th *ngIf="true">Action</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let f of filteredFees">
+          <td>{{ f.name }}</td>
+          <td>{{ f.dueDate }}</td>
+          <td>{{ f.amount }} EGP</td>
+
+          <td>
+            <span class="badge" [class.paid]="f.status === 'PAID'">
+              {{ f.status }}
+            </span>
+          </td>
+
+          <td class="actions">
+            <button *ngIf="f.status === 'UNPAID'" class="pay-btn" (click)="openPayModal(f)">
+              Pay Now
+            </button>
+
+            <button class="download-btn" (click)="downloadInvoice(f)">
+              Download
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- PAYMENT HISTORY -->
+  <section class="card-section">
+    <h2>Payment History</h2>
+
+    <table class="fees-table" *ngIf="payments.length > 0; else noPayments">
+      <thead>
+        <tr>
+          <th>Invoice</th>
+          <th>Amount</th>
+          <th>Date</th>
+          <th>Reference</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let p of payments">
+          <td>{{ p.invoice }}</td>
+          <td>{{ p.amount }} EGP</td>
+          <td>{{ p.date }}</td>
+          <td>#{{ p.ref }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <ng-template #noPayments>
+      <p class="muted">No payments yet.</p>
+    </ng-template>
+
+  </section>
+
+</div>
+
+
+<!-- PAYMENT MODAL -->
+<div class="modal-backdrop" *ngIf="modalOpen" (click)="closeModal()"></div>
+
+<div class="payment-modal" *ngIf="modalOpen">
+  <h3>Pay: {{ selectedFee?.name }}</h3>
+  <p class="modal-amount">{{ selectedFee?.amount }} EGP</p>
+
+  <label>Cardholder Name</label>
+  <input [(ngModel)]="cardName" />
+
+  <label>Card Number</label>
+  <input [(ngModel)]="cardNumber" />
+
+  <label>CVV</label>
+  <input [(ngModel)]="cardCVV" />
+
+  <button class="confirm-btn" (click)="confirmPayment()">Confirm Payment</button>
+  <button class="close-btn" (click)="closeModal()">Cancel</button>
+</div>

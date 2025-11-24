@@ -1,0 +1,75 @@
+.admin-container {
+  padding: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  color: var(--text);
+}
+
+/* Title */
+.page-title {
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+
+/* KPI Grid */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 22px;
+}
+
+
+.kpi-card {
+  background: var(--card);
+  padding: 25px;
+  border-radius: 18px;
+  border: 1px solid var(--border);
+  box-shadow: 0 0 25px rgba(16,185,129,0.12);
+  transition: 0.3s;
+}
+
+.kpi-card:hover {
+  box-shadow: 0 0 35px rgba(16,185,129,0.25);
+  transform: translateY(-3px);
+}
+
+.kpi-card label {
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.kpi-card h2 {
+  margin-top: 8px;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+/* Actions Row */
+.actions-row {
+  margin-top: 35px;
+  display: flex;
+  gap: 20px;
+}
+
+
+.action-btn {
+  padding: 15px 28px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--green);
+  color: #0c1116;
+  border: none;
+  font-size: 18px;
+  border-radius: 14px;
+  cursor: pointer;
+  font-weight: 600;
+  box-shadow: 0 0 15px rgba(16,185,129,0.25);
+  transition: 0.3s ease;
+}
+
+.action-btn:hover {
+  background: var(--green-light);
+  transform: translateY(-3px);
+}

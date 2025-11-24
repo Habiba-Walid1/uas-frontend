@@ -1,0 +1,47 @@
+<div class="accountant-container">
+
+  <h1 class="page-title">Accountant Dashboard</h1>
+
+  <!-- KPI GRID -->
+  <div class="kpi-grid">
+
+    <!-- KPI CARD -->
+    <div class="kpi-card">
+      <h4>Total Collected</h4>
+      <p class="value">{{ totalCollected | currency }}</p>
+    </div>
+
+    <div class="kpi-card">
+      <h4>Outstanding Fees</h4>
+      <p class="value">{{ outstanding | currency }}</p>
+    </div>
+
+    <div class="kpi-card">
+      <h4>Total Staff</h4>
+      <p class="value">{{ totalStaff }}</p>
+    </div>
+
+  </div>
+
+  <!-- ACTION AREA -->
+  <div class="action-section">
+
+    <h2 class="section-title">Manage Financial Operations</h2>
+
+    <div class="action-buttons">
+      <button class="action-btn" routerLink="/staff/fees">
+        Manage Student Fees
+      </button>
+
+      <button class="action-btn" routerLink="/staff/payroll">
+         Manage Payroll
+      </button>
+
+      <button class="action-btn" routerLink="/staff/budget">
+        Department Budget
+      </button>
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,149 @@
+.payroll-container {
+  padding: 40px;
+  color: var(--text);
+  max-width: 1100px;      /* prevent stretching */
+  margin: 0 auto;         /* centers everything */
+}
+
+.page-title {
+  margin-bottom: 25px;
+}
+
+.search-row {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.search-row input {
+  flex: 1;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text);
+}
+
+.add-btn,
+.report-btn {
+  padding: 12px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  border: none;
+}
+
+.add-btn {
+  background: linear-gradient(135deg, var(--green), var(--green-light));
+  color: #0c1116;
+}
+
+.report-btn {
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+.payroll-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--card);
+}
+
+.payroll-table th,
+.payroll-table td {
+  padding: 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+.payroll-table th {
+  text-align: left;
+  background: var(--card);
+  color: var(--text-muted);
+}
+
+.net {
+  font-weight: 700;
+  color: var(--green);
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+}
+
+.small-btn {
+  padding: 6px 10px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.small-btn:hover {
+  border-color: var(--green);
+}
+
+.delete-btn {
+  padding: 8px 14px;
+  background: #ef4444;
+  color: white;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: 0.15s ease;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal {
+  width: 420px;
+  background: var(--card);
+  padding: 30px;
+  border-radius: 18px;
+  border: 1px solid var(--border);
+}
+
+.modal-grid {
+  display: grid;
+  gap: 12px;
+  margin-top: 15px;
+}
+
+.modal-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.primary-btn {
+  padding: 10px 18px;
+  background: linear-gradient(135deg, var(--green), var(--green-light));
+  border-radius: 10px;
+  border: none;
+  font-weight: 600;
+  color: #0c1116;
+}
+
+.secondary-btn {
+  padding: 10px 18px;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 10px;
+}

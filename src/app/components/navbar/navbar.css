@@ -1,0 +1,162 @@
+/* OUTER WRAPPER (sticky floating navbar) */
+.navbar-wrapper {
+  position: sticky;
+  top: 20px;
+  z-index: 9999;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  pointer-events: none; 
+  transition: 0.3s ease;
+}
+
+/* FLOATING GLASS PANEL */
+.navbar-floating {
+  width: 90%;
+  max-width: 1500px;
+
+  /* Themed glass background */
+  background: rgba(var(--glass-rgb), 0.7);
+  backdrop-filter: blur(12px);
+
+  border-radius: 30px;
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+
+  pointer-events: auto;
+  transition: 0.3s ease;
+}
+
+/* INNER CONTENT */
+.navbar-inner {
+  height: 75px;
+  padding: 0 35px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* LOGO */
+.logo {
+  font-size: 32px;
+  font-weight: 800;
+  cursor: pointer;
+  background: linear-gradient(90deg, var(--green), var(--green-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: 0.3s ease;
+}
+
+.logo:hover {
+  filter: brightness(1.25);
+}
+
+/* NAV LINKS */
+.nav-links {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--text-muted);
+  font-size: 16px;
+  transition: 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: var(--green-light);
+}
+
+/* ACTIVE PAGE */
+.highlight {
+  color: var(--green-light) !important;
+  border-bottom: 1px solid var(--green-light);
+}
+
+/* LOGOUT */
+.logout {
+  color: var(--danger) !important;
+}
+
+.logout:hover {
+  opacity: 0.7;
+}
+.aurora-toggle {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: var(--card);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  transition: 0.3s ease;
+  box-shadow: 0 0 12px rgba(16,185,129,0.2);
+}
+
+.aurora-toggle .inner {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--green), var(--green-light));
+  transition: 0.3s ease;
+}
+
+.aurora-toggle:hover {
+  box-shadow: 0 0 30px rgba(16,185,129,0.5);
+  transform: translateY(-2px);
+}
+
+/* Light Mode animation */
+:root.light .inner {
+  background: #000;
+  box-shadow: 0 0 12px rgba(0,0,0,0.4);
+}
+
+.nav-profile {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid var(--green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--card);
+  transition: 0.25s ease;
+}
+
+.nav-profile:hover {
+  transform: scale(1.07);
+  box-shadow: 0 0 10px rgba(16,185,129,0.35);
+}
+.nav-profile-pic {
+  width: 36px; 
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+
+.profile-fallback {
+  width: 36px; 
+  height: 36px;
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: 18px;
+  background: linear-gradient(135deg, var(--green), var(--green-light));
+  color: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+

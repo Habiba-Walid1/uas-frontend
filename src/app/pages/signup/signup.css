@@ -1,141 +1,202 @@
 .signup-container {
   display: flex;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+  position: relative;
+  padding: 0 40px;
+    margin-top: -120px;
+  padding-top: 100px;
+}
+
+.left-panel {
+  flex: 1;
+  padding: 90px 60px;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
-  padding: 40px 20px;
 }
 
-.signup-card {
-  width: 100%;
-  max-width: 480px;
-  background: #ffffff;
-  padding: 36px;
-  border-radius: 14px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-  animation: fadeIn 0.6s ease;
+.left-panel h1 {
+  font-size: 54px;
+  font-weight: 800;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+.left-panel span {
+  background: linear-gradient(90deg, var(--green), var(--green-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-h2 {
-  text-align: center;
-  color: #1E3A8A;
-  margin-bottom: 24px;
-  font-size: 26px;
-  font-weight: 700;
-}
-
-.section-title {
-  margin-top: 22px;
+.left-panel p {
+  margin-top: 20px;
+  color: var(--text-muted);
   font-size: 18px;
-  color: #1E3A8A;
-  font-weight: 700;
-  margin-bottom: 10px;
 }
 
-.form-group {
-  margin-bottom: 18px;
+.right-panel {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 80px;
 }
 
-label {
-  font-weight: 600;
-  margin-bottom: 6px;
-  display: block;
-  color: #374151;
-}
-
-input, select, textarea {
+.signup-form {
   width: 100%;
-  padding: 10px 12px;
-  border-radius: 8px;
-  border: 1px solid #cbd5e1;
-  font-size: 15px;
-  transition: 0.2s;
+  max-width: 420px;
 }
 
-textarea {
-  height: 80px;
-  resize: none;
+.signup-form h2 {
+  text-align: center;
+  margin-bottom: 25px;
 }
 
-input:focus, select:focus, textarea:focus {
-  border-color: #1E3A8A;
-  box-shadow: 0 0 4px rgba(30,58,138,0.4);
+/* UPLOAD SECTION */
+.upload-section {
+  text-align: center;
+ 
+  padding:0px 50px 0px 0px;
+  width: 100%;
+  display: flex;
+  justify-content: center; /* horizontal center */
+  align-items: center;     /* vertical center */
+}
+.upload-circle {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: var(--card);
+  border: 2px dashed var(--green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  transition: 0.3s ease;
 }
 
-.preview-img {
-  width: 80px;
-  height: 80px;
-  margin-top: 8px;
+.upload-circle:hover {
+  background: rgba(16, 185, 129, 0.08);
+  border-color: var(--green-light);
+}
+
+.upload-circle img {
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid #1E3A8A;
 }
 
-/* CARD GRID */
-.card-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 14px;
+.plus-icon {
+  font-size: 40px;
+  color: var(--green);
+  font-weight: bold;
 }
 
-.signup-btn {
-  width: 100%;
-  margin-top: 20px;
-  padding: 12px 0;
-  border: none;
-  border-radius: 8px;
-  background: #1E3A8A;
-  color: white;
-  font-weight: 600;
-  font-size: 17px;
-  cursor: pointer;
-  transition: 0.2s;
+.hidden-file {
+  display: none;
 }
 
-.signup-btn:hover {
-  background: #3B82F6;
-}
 
-.error {
-  color: red;
-  margin-top: 12px;
-  font-size: 14px;
+/* Role Card */
+.role-card {
+  width: 380px;
+  padding: 35px;
+  border-radius: 20px;
+  background: var(--bg-glass);
+  backdrop-filter: blur(12px);
   text-align: center;
-}
-/* Responsive Design */
-@media (max-width: 992px) {
-  .signup-container {
-    padding: 30px 15px;
-  }
-  .signup-card {
-    width: 90%;
-    padding: 28px;
-  }
-  h2 {
-    font-size: 24px;
-  }
-  .card-grid {
-    grid-template-columns: 1fr;
-  }
+  border: 1px solid var(--glass-border);
+  margin-top: 200px;
 }
 
-@media (max-width: 600px) {
-  .signup-card {
-    width: 100%;
-    padding: 22px;
-  }
-  h2 {
-    font-size: 22px;
-  }
-  input, select, textarea {
-    font-size: 14px;
-    padding: 9px 10px;
-  }
-  .signup-btn {
-    font-size: 15px;
-    padding: 10px;
-  }
+.role-buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.role-btn {
+  flex: 1;
+  padding: 12px;
+  border-radius: 12px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.role-btn:hover {
+  border-color: var(--green);
+}
+
+/* Inputs */
+input {
+  width: 100%;
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 12px;
+  border-radius: 10px;
+  margin-top: 6px;
+  color: var(--text);
+}
+
+input:focus {
+  border-color: var(--green);
+  outline: none;
+  box-shadow: 0 0 10px rgba(16,185,129,0.4);
+}
+
+/* Submit */
+.submit-btn {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, var(--green), var(--green-light));
+  color: var(--bg);
+  border: none;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+.submit-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 18px rgba(16,185,129,0.35);
+}
+
+/* Orbs */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.25;
+}
+
+.orb1 {
+  width: 280px;
+  height: 280px;
+  background: var(--green);
+  top: -40px;
+  right: -40px;
+}
+
+.orb2 {
+  width: 220px;
+  height: 220px;
+  background: var(--green-light);
+  bottom: 20%;
+  left: -40px;
+}
+
+.orb3 {
+  width: 200px;
+  height: 200px;
+  background: #14b8a6;
+  bottom: 10%;
+  right: 10%;
 }

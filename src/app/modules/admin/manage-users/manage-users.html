@@ -1,0 +1,69 @@
+<div class="users-container">
+
+  <h1 class="page-title">Manage Users</h1>
+
+  <div class="search-row">
+    <input type="text" placeholder="Search users..." [(ngModel)]="searchText" (input)="search()" />
+  </div>
+
+  <div class="table-wrapper">
+    <table class="users-table">
+      <thead>
+        <tr>
+          <th>Full Name</th>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let u of filtered">
+          <td>{{ u.fullname }}</td>
+          <td>{{ u.username }}</td>
+          <td>{{ u.email }}</td>
+          <td>{{ u.role | titlecase }}</td>
+
+          <td class="actions">
+            <button class="small-btn" (click)="openEdit(u)">Edit</button>
+            <button class="delete-btn" (click)="deleteUser(u.email)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Modal -->
+  <div class="overlay" *ngIf="modalOpen">
+    <div class="modal">
+
+      <h2>Edit User</h2>
+
+      <div class="modal-grid">
+        <label>Full Name</label>
+        <input [(ngModel)]="editingUser.fullname" />
+
+        <label>Username</label>
+        <input [(ngModel)]="editingUser.username" />
+
+        <label>Email</label>
+        <input [(ngModel)]="editingUser.email" />
+
+        <label>Role</label>
+        <select [(ngModel)]="editingUser.role">
+          <option value="student">Student</option>
+          <option value="staff">Staff</option>
+          <option value="admin">Admin</option>
+        </select>
+      </div>
+
+      <div class="modal-buttons">
+        <button class="primary-btn" (click)="saveChanges()">Save</button>
+        <button class="secondary-btn" (click)="closeModal()">Cancel</button>
+      </div>
+
+    </div>
+  </div>
+
+</div>

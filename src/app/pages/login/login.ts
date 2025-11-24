@@ -1,53 +1,76 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [CommonModule, FormsModule, RouterLink],
   templateUrl: './login.html',
   styleUrls: ['./login.css']
 })
 export class Login {
+  adminu= 'admin';
+  adminp='1';
+  username = '';
+  password = '';
+  selectedRole: 'student' | 'staff' | 'admin' = 'student';
+
+  errorMsg = '';   // << NEW
 
   constructor(private router: Router) {}
 
-  errorMessage = '';
+  ngOnInit(): void {
+  let users = JSON.parse(localStorage.getItem('users') || '[]');
 
-  form = {
-    username: '',
-    password: ''
-  };
+  // 👉 Check if admin already exists
+  const hasAdmin = users.some((u: any) => u.username === 'admin');
 
-  onLogin() {
+  if (!hasAdmin) {
+    const adminUser = {
+      fullname: 'System Administrator',
+      username: 'admin',
+      email: 'admin@unipay.com',
+      password: '1',     // You can change the password
+      role: 'admin',
+      staffId: 'ADM-001',
+      universityId: null,
+      profileImage: null
+    };
 
-    const storedUser = localStorage.getItem("user");
-    if (!storedUser) {
-      this.errorMessage = "No user found. Please signup first.";
-      return;
-    }
+    users.push(adminUser);
+    localStorage.setItem('users', JSON.stringify(users));
 
-    const userData = JSON.parse(storedUser);
-
-    if (this.form.username === userData.username &&
-        this.form.password === userData.password) 
-    {
-      sessionStorage.setItem("activeUser", JSON.stringify({
-        username: userData.username,
-        role: userData.role,
-        name: userData.name,
-        email: userData.email,
-        picture: userData.picture,
-        creditCard: userData.creditCard,
-        preferences: userData.preferences
-      }));
-
-      this.router.navigate(['/profile']);
-
-    } else {
-      this.errorMessage = "Incorrect username or password.";
-    }
+    console.log('✅ Hardcoded admin created');
   }
+}
+
+login() {
+  this.errorMsg = "";
+
+  if (!this.username || !this.password) {
+    this.errorMsg = "Please fill all fields.";
+    return;
+  }
+
+  const existingUsers = JSON.parse(localStorage.getItem('users') || '[]');
+  // Try to find match
+  const foundUser = existingUsers.find((u: any) => 
+    u.username === this.username && u.password === this.password
+  );
+
+  if (!foundUser) {
+    this.errorMsg = "Incorrect email or password.";
+    return;
+  }
+
+  // Save role + current user
+  localStorage.setItem('role', foundUser.role);
+  localStorage.setItem('currentUser', JSON.stringify(foundUser));
+
+  // Redirect based on role soon, but for now home
+  this.router.navigate(['/profile']);
+}
+
 }

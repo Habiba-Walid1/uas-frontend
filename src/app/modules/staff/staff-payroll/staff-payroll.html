@@ -1,0 +1,85 @@
+<div class="payroll-container">
+
+  <h1 class="page-title">Staff Payroll Management</h1>
+
+  <div class="search-row">
+    <input
+      type="text"
+      placeholder="Search staff or month..."
+      [(ngModel)]="searchText"
+      (input)="search()"
+    />
+
+    <button class="add-btn" (click)="openAddModal()">+ Add Payroll</button>
+    <button class="report-btn" (click)="generateMonthlyReport()">Export Monthly Report</button>
+  </div>
+
+  <!-- Table -->
+  <div class="table-wrapper">
+    <table class="payroll-table">
+      <thead>
+        <tr>
+          <th>Staff Name</th>
+          <th>Base Salary</th>
+          <th>Allowances</th>
+          <th>Deductions</th>
+          <th>Net Salary</th>
+          <th>Month</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let p of filteredPayroll">
+          <td>{{ p.staffName }}</td>
+          <td>${{ p.baseSalary }}</td>
+          <td>${{ p.allowances }}</td>
+          <td>${{ p.deductions }}</td>
+          <td class="net">${{ p.netSalary }}</td>
+          <td>{{ p.month }}</td>
+
+          <td class="actions">
+            <button class="small-btn" (click)="openEditModal(p)">Edit</button>
+            <button class="delete-btn" (click)="deleteRecord(p.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+
+    </table>
+  </div>
+
+
+  <!-- Modal -->
+  <div class="overlay" *ngIf="modalOpen">
+    <div class="modal">
+
+      <h2>{{ editing ? 'Edit Payroll Record' : 'Add Payroll Record' }}</h2>
+
+      <div class="modal-grid">
+
+        <label>Staff Name</label>
+        <input [(ngModel)]="staffName" />
+
+        <label>Base Salary</label>
+        <input type="number" [(ngModel)]="baseSalary" />
+
+        <label>Allowances</label>
+        <input type="number" [(ngModel)]="allowances" />
+
+        <label>Deductions</label>
+        <input type="number" [(ngModel)]="deductions" />
+
+        <label>Month</label>
+        <input type="text" placeholder="e.g., December 2025" [(ngModel)]="month" />
+
+      </div>
+
+      <div class="modal-buttons">
+        <button class="primary-btn" (click)="saveRecord()">Save</button>
+        <button class="secondary-btn" (click)="closeModal()">Cancel</button>
+      </div>
+
+    </div>
+  </div>
+
+</div>

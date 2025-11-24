@@ -1,0 +1,236 @@
+/* ================================ */
+/* PAGE WRAPPER */
+/* ================================ */
+.budget-container {
+  padding: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  color: var(--text);
+}
+
+/* ================================ */
+/* KPI CARDS */
+/* ================================ */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.stat {
+  padding: 22px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  font-weight: 600;
+}
+
+.stat.income { border-left: 5px solid var(--green); }
+.stat.expense { border-left: 5px solid #ef4444; }
+.stat.balance { border-left: 5px solid var(--green-light); }
+
+/* ================================ */
+/* TOP ACTIONS */
+/* ================================ */
+.top-actions {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.top-actions input {
+  flex: 1;
+  padding: 12px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: var(--text);
+}
+
+/* ================================ */
+/* CHART GRID */
+/* ================================ */
+.chart-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+/* Chart container */
+.chart-card {
+  background: var(--card);
+  border-radius: 18px;
+  padding: 20px;
+  border: 1px solid var(--border);
+  height: 350px;
+  overflow: hidden;
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Scope the ngx-charts elements ONLY inside chart-card */
+.chart-card ngx-charts-pie-chart,
+.chart-card ngx-charts-bar-vertical {
+  width: 100% !important;
+  height: 100% !important;
+  display: block !important;
+}
+
+/* Fix SVG scaling *only inside charts* */
+.chart-card svg {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* ================================ */
+/* AXIS + LABEL COLOR FIX (Dark Mode) */
+/* ================================ */
+
+.chart-card text,
+.chart-card .legend-title,
+.chart-card .legend-label-text {
+  fill: var(--text) !important;
+  color: var(--text) !important;
+  font-family: 'Inter', sans-serif !important;
+}
+
+.chart-card .gridline-path {
+  stroke: var(--border) !important;
+  opacity: 0.5;
+}
+
+/* ================================ */
+/* TABLE */
+/* ================================ */
+
+.table-wrapper {
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--card);
+  overflow: hidden;
+}
+
+.budget-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.budget-table th,
+.budget-table td {
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border);
+}
+
+.type.income { color: var(--green); font-weight: bold; }
+.type.expense { color: #ef4444; font-weight: bold; }
+
+/* ================================ */
+/* MODAL */
+/* ================================ */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(4px);
+}
+
+.modal {
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 28px;
+  border-radius: 18px;
+  width: 420px;
+}
+
+.modal input,
+.modal select {
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+/* ---------------- GLOBAL BUTTONS ---------------- */
+
+/* Primary Action Button */
+.add-btn, .export-btn {
+  background: linear-gradient(135deg, var(--green), var(--green-light));
+  padding: 10px 18px;
+  border-radius: 12px;
+  border: none;
+  color: #0c1116;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.add-btn:hover , .export-btn:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.35);
+}
+
+/* Secondary Button */
+.secondary-btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  padding: 10px 18px;
+  border-radius: 12px;
+  color: var(--text);
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.secondary-btn:hover {
+  border-color: var(--green);
+  box-shadow: 0 0 10px rgba(16,185,129,0.25);
+}
+
+/* Danger Button (Delete) */
+.delete-btn {
+  padding: 8px 14px;
+  background: #ef4444;
+  color: white;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: 0.15s ease;
+}
+
+.delete-btn:hover {
+  background: #dc2626;
+  transform: translateY(-1px);
+}
+
+/* Small Action Button (tables) */
+.small-btn {
+  padding: 6px 12px;
+  border-radius: 10px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--text);
+  cursor: pointer;
+  font-size: 13px;
+  transition: 0.2s;
+}
+
+.small-btn:hover {
+  border-color: var(--green);
+}
+/* Restrict chart CSS to chart-card only */
+.chart-card * {
+  box-sizing: content-box !important;
+}

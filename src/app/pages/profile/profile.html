@@ -1,96 +1,118 @@
-<div class="profile-wrapper">
+<div class="profile-page">
 
-  <div class="profile-card">
+  <div class="profile-wrapper">
 
-    <!-- Header -->
-    <div class="header">
-      <img *ngIf="user.picture" [src]="user.picture" class="profile-img" />
+    <!-- LEFT SIDE: AVATAR & IMAGE -->
+    <div class="profile-left">
 
-      <div class="header-text">
-        <h2>{{ user.name }}</h2>
-        <p class="role">{{ user.role | titlecase }}</p>
+      <div class="avatar-big">
+        <img *ngIf="profileImage" [src]="profileImage" alt="Avatar" />
+        <span *ngIf="!profileImage">{{ user.fullname[0] }}</span>
       </div>
+
+      <label *ngIf=editing class="upload-btn">
+        Change Photo
+        <input type="file" accept="image/*" (change)="uploadImage($event)" />
+      </label>
+
     </div>
 
-    <!-- Info Grid -->
-    <div class="info-grid">
-      <div class="info-item">
-        <label>Username</label>
-        <p>{{ user.username }}</p>
+    <!-- RIGHT SIDE: INFORMATION -->
+    <div class="profile-right">
+
+      <h1 class="profile-title">Profile Information</h1>
+
+      <div class="form-grid">
+
+        <!-- FULL NAME -->
+        <div class="form-item">
+          <label>Full Name</label>
+          <span *ngIf="!editing">{{ user.fullname }}</span>
+          <input *ngIf="editing" [(ngModel)]="editedUser.fullname" />
+        </div>
+
+        <!-- EMAIL -->
+        <div class="form-item">
+          <label>Email</label>
+          <span *ngIf="!editing">{{ user.email }}</span>
+          <input *ngIf="editing" [(ngModel)]="editedUser.email" />
+        </div>
+
+        <!-- USERNAME -->
+        <div class="form-item">
+          <label>Username</label>
+          <span *ngIf="!editing">{{ user.username }}</span>
+          <input *ngIf="editing" [(ngModel)]="editedUser.username" />
+        </div>
+
+        <!-- UNIVERSITY ID -->
+        <div class="form-item" *ngIf="user.universityId">
+          <label>University ID</label>
+          <span *ngIf="!editing">{{ user.universityId }}</span>
+          <input *ngIf="editing" [(ngModel)]="editedUser.universityId" />
+        </div>
+
+        <!-- STAFF ID -->
+        <div class="form-item" *ngIf="user.staffId">
+          <label>Staff ID</label>
+          <span *ngIf="!editing">{{ user.staffId }}</span>
+          <input *ngIf="editing" [(ngModel)]="editedUser.staffId" />
+        </div>
+
       </div>
 
-      <div class="info-item">
-        <label>Email</label>
-        <p>{{ user.email }}</p>
+      <!-- BUTTONS -->
+      <div class="button-row" *ngIf="!editing">
+        <button class="prim-btn" (click)="toggleEdit()">Edit Profile</button>
+        <button class="danger-btn" (click)="logout()">Logout</button>
       </div>
 
-      <div class="info-item">
-        <label>Credit Card</label>
-        <p>**** **** **** {{ user.creditCard?.slice(-4) }}</p>
+      <div class="button-row" *ngIf="editing">
+        <button class="prim-btn" (click)="saveChanges()">Save Changes</button>
+        <button class="secondary-btn" (click)="cancelEdit()">Cancel</button>
+            </div>
+      <!-- CHANGE PASSWORD PANEL -->
+      <div class="password-box">
+
+        <h3>Change Password</h3>
+
+        <div *ngIf="!changingPassword" class="password-preview">
+          ••••••••••
+        <button class="mini-btn" (click)="changingPassword = true">Change</button>
+        </div>
+
+        <div *ngIf="changingPassword" class="password-fields">
+          <input
+            type="password"
+            placeholder="Current Password"
+            [(ngModel)]="passwordForm.current"
+          />
+          <input
+            type="password"
+            placeholder="New Password"
+            [(ngModel)]="passwordForm.new"
+          />
+          <input
+            type="password"
+            placeholder="Confirm New Password"
+            [(ngModel)]="passwordForm.confirm"
+          />
+
+          <div class="password-actions">
+            <button class="primary-btn" (click)="savePassword()">Save Password</button>
+            <button class="secondary-btn" (click)="changingPassword = false">Cancel</button>
+          </div>
+        </div>
+
       </div>
 
-      <div class="info-item wide">
-        <label>Preferences</label>
-        <p>{{ user.preferences || 'None' }}</p>
-      </div>
-    </div>
-
-    <!-- Edit Button -->
-    <button class="action-btn edit" (click)="openEdit()">Edit Profile</button>
-
-    <!-- STUDENT BUTTON -->
-    <button 
-      *ngIf="user.role === 'student'" 
-      routerLink="/student-fees" 
-      class="action-btn">
-      View Fees
-    </button>
-
-    <!-- ACCOUNTING BUTTONS -->
-    <div *ngIf="user.role === 'accounting'" class="role-actions">
-      <button routerLink="/staff-payroll" class="role-btn">Payroll</button>
-      <button routerLink="/department-budget" class="role-btn">Budget</button>
-    </div>
-
-    <!-- ADMIN BUTTONS -->
-    <div *ngIf="user.role === 'admin'" class="role-actions">
-      <button routerLink="/staff-payroll" class="role-btn">Payroll</button>
-      <button routerLink="/department-budget" class="role-btn">Budget</button>
-      <button routerLink="/student-fees" class="role-btn">Fees</button>
     </div>
 
   </div>
-</div>
 
+  <!-- Background orbs -->
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
 
-<!-- EDIT MODAL -->
-<div class="modal" *ngIf="editing">
-  <div class="modal-content">
-
-    <h3>Edit Profile</h3>
-
-    <label>Name</label>
-    <input [(ngModel)]="editForm.name" />
-
-    <label>Email</label>
-    <input [(ngModel)]="editForm.email" />
-
-    <label>Username</label>
-    <input [(ngModel)]="editForm.username" />
-
-    <label>Credit Card</label>
-    <input [(ngModel)]="editForm.creditCard" />
-
-    <label>Preferences</label>
-    <textarea [(ngModel)]="editForm.preferences"></textarea>
-
-    <label>Change Picture</label>
-    <input type="file" (change)="changePicture($event)" />
-
-    <div class="modal-buttons">
-      <button class="save-btn" (click)="saveChanges()">Save</button>
-      <button class="cancel-btn" (click)="closeEdit()">Cancel</button>
-    </div>
-
-  </div>
 </div>
