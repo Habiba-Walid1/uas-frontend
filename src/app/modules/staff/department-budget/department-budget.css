@@ -28,9 +28,15 @@
   font-weight: 600;
 }
 
-.stat.income { border-left: 5px solid var(--green); }
-.stat.expense { border-left: 5px solid #ef4444; }
-.stat.balance { border-left: 5px solid var(--green-light); }
+.stat.income {
+  border-left: 5px solid var(--green);
+}
+.stat.expense {
+  border-left: 5px solid #ef4444;
+}
+.stat.balance {
+  border-left: 5px solid var(--green-light);
+}
 
 /* ================================ */
 /* TOP ACTIONS */
@@ -65,33 +71,27 @@
   border-radius: 18px;
   padding: 20px;
   border: 1px solid var(--border);
-  height: 350px;
-  overflow: hidden;
-  position: relative;
-
+  min-height: 360px; /* consistent */
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
 }
 
-/* Scope the ngx-charts elements ONLY inside chart-card */
+.chart-card h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+/* Make chart components fill width without stretching vertically */
 .chart-card ngx-charts-pie-chart,
 .chart-card ngx-charts-bar-vertical {
-  width: 100% !important;
-  height: 100% !important;
-  display: block !important;
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
-/* Fix SVG scaling *only inside charts* */
-.chart-card svg {
-  width: 100% !important;
-  height: 100% !important;
-}
-
-/* ================================ */
 /* AXIS + LABEL COLOR FIX (Dark Mode) */
-/* ================================ */
-
 .chart-card text,
 .chart-card .legend-title,
 .chart-card .legend-label-text {
@@ -108,7 +108,6 @@
 /* ================================ */
 /* TABLE */
 /* ================================ */
-
 .table-wrapper {
   border: 1px solid var(--border);
   border-radius: 16px;
@@ -127,17 +126,22 @@
   border-bottom: 1px solid var(--border);
 }
 
-.type.income { color: var(--green); font-weight: bold; }
-.type.expense { color: #ef4444; font-weight: bold; }
+.type.income {
+  color: var(--green);
+  font-weight: bold;
+}
+.type.expense {
+  color: #ef4444;
+  font-weight: bold;
+}
 
 /* ================================ */
 /* MODAL */
 /* ================================ */
-
 .overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.6);
+  background: rgba(0, 0, 0, 0.6);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -161,10 +165,14 @@
   border: 1px solid var(--border);
   color: var(--text);
 }
-/* ---------------- GLOBAL BUTTONS ---------------- */
+
+/* ================================ */
+/* BUTTONS */
+/* ================================ */
 
 /* Primary Action Button */
-.add-btn, .export-btn {
+.add-btn,
+.export-btn {
   background: linear-gradient(135deg, var(--green), var(--green-light));
   padding: 10px 18px;
   border-radius: 12px;
@@ -175,7 +183,8 @@
   transition: 0.2s ease;
 }
 
-.add-btn:hover , .export-btn:hover{
+.add-btn:hover,
+.export-btn:hover {
   transform: translateY(-1px);
   box-shadow: 0 0 12px rgba(16, 185, 129, 0.35);
 }
@@ -194,7 +203,7 @@
 
 .secondary-btn:hover {
   border-color: var(--green);
-  box-shadow: 0 0 10px rgba(16,185,129,0.25);
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.25);
 }
 
 /* Danger Button (Delete) */
@@ -215,7 +224,7 @@
   transform: translateY(-1px);
 }
 
-/* Small Action Button (tables) */
+/* Small Action Button */
 .small-btn {
   padding: 6px 12px;
   border-radius: 10px;
@@ -230,7 +239,12 @@
 .small-btn:hover {
   border-color: var(--green);
 }
-/* Restrict chart CSS to chart-card only */
-.chart-card * {
-  box-sizing: content-box !important;
+
+/* ================================ */
+/* RESPONSIVE */
+/* ================================ */
+@media (max-width: 900px) {
+  .chart-grid {
+    grid-template-columns: 1fr;
+  }
 }
