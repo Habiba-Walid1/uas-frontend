@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationEnd, RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, NavigationEnd, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { filter } from 'rxjs/operators';
 
@@ -8,8 +8,7 @@ import { filter } from 'rxjs/operators';
   standalone: true,
   imports: [
     CommonModule,
-    RouterLink,
-    RouterLinkActive
+    RouterLink
   ],
   templateUrl: './navbar.html',
   styleUrls: ['./navbar.css']

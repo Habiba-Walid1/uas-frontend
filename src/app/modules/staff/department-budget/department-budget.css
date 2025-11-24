@@ -9,6 +9,7 @@
   flex-direction: column;
   gap: 30px;
   color: var(--text);
+  box-sizing: border-box;
 }
 
 /* ================================ */
@@ -39,6 +40,7 @@
   display: flex;
   gap: 15px;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .top-actions input {
@@ -48,6 +50,7 @@
   border: 1px solid var(--border);
   border-radius: 12px;
   color: var(--text);
+  min-width: 0;
 }
 
 /* ================================ */
@@ -55,7 +58,7 @@
 /* ================================ */
 .chart-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 30px;
 }
 
@@ -65,13 +68,14 @@
   border-radius: 18px;
   padding: 20px;
   border: 1px solid var(--border);
-  height: 350px;
-  overflow: hidden;
+  height: min(350px, 40vh);
+  overflow: visible; /* prevent clipping */
   position: relative;
 
   display: flex;
-  align-items: center;
+  align-items: stretch; /* let chart content stretch to full card height */
   justify-content: center;
+  box-sizing: border-box;
 }
 
 /* Scope the ngx-charts elements ONLY inside chart-card */
@@ -86,6 +90,9 @@
 .chart-card svg {
   width: 100% !important;
   height: 100% !important;
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 /* ================================ */
@@ -105,6 +112,38 @@
   opacity: 0.5;
 }
 
+/* Ensure axis ticks and labels use the same theme color */
+.chart-card .x.axis text,
+.chart-card .y.axis text,
+.chart-card g.tick text,
+.chart-card .axis-label,
+.chart-card .xAxisLabel,
+.chart-card .yAxisLabel,
+.chart-card text {
+  fill: #ffffff !important;
+  color: #ffffff !important;
+  font-size: 12px !important;
+}
+/* More targeted selectors for specific chart implementations */
+.chart-card ngx-charts-bar-vertical .x.axis text,
+.chart-card ngx-charts-bar-vertical .y.axis text,
+.chart-card ngx-charts-bar-vertical g.tick text,
+.chart-card ngx-charts-bar-vertical .axis-label,
+.chart-card ngx-charts-bar-vertical svg text {
+  fill: #ffffff !important;
+}
+.chart-card ngx-charts-pie-chart svg text,
+.chart-card ngx-charts-pie-chart .legend-label-text {
+  fill: #ffffff !important;
+}
+
+/* Legend item text (ensure dark mode friendly) */
+.chart-card .legend-item text,
+.chart-card .legend-label-text {
+  fill: var(--text) !important;
+  color: var(--text) !important;
+}
+
 /* ================================ */
 /* TABLE */
 /* ================================ */
@@ -113,18 +152,24 @@
   border: 1px solid var(--border);
   border-radius: 16px;
   background: var(--card);
-  overflow: hidden;
+  overflow: auto; /* allow horizontal scroll on small screens */
+  -webkit-overflow-scrolling: touch;
 }
 
 .budget-table {
   width: 100%;
   border-collapse: collapse;
+  table-layout: auto;
 }
 
 .budget-table th,
 .budget-table td {
   padding: 14px 18px;
   border-bottom: 1px solid var(--border);
+  white-space: normal;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  vertical-align: middle;
 }
 
 .type.income { color: var(--green); font-weight: bold; }
@@ -150,6 +195,7 @@
   padding: 28px;
   border-radius: 18px;
   width: 420px;
+  max-width: 95%;
 }
 
 .modal input,
@@ -232,5 +278,23 @@
 }
 /* Restrict chart CSS to chart-card only */
 .chart-card * {
-  box-sizing: content-box !important;
+  box-sizing: border-box !important;
+}
+
+/* Ensure consistent box sizing in budget component */
+.budget-container, .budget-container * {
+  box-sizing: border-box;
+}
+
+@media (max-width: 900px) {
+  .chart-grid { grid-template-columns: 1fr; }
+  .stats-row { grid-template-columns: 1fr; }
+  .chart-card { height: min(300px, 35vh); }
+  .top-actions { gap: 10px; }
+}
+
+@media (max-width: 480px) {
+  .stats-row { grid-template-columns: 1fr; }
+  .modal { width: 95%; }
+  .add-btn, .export-btn { width: 100%; }
 }
