@@ -200,3 +200,93 @@ input:focus {
   bottom: 10%;
   right: 10%;
 }
+/* ========================================= */
+/* RESPONSIVE FIXES FOR SIGNUP PAGE          */
+/* ========================================= */
+@media (max-width: 1100px) {
+  .signup-container {
+    flex-direction: column;
+    padding: 40px 20px;
+    margin-top: 0;
+    padding-top: 40px;
+  }
+
+  .left-panel {
+    text-align: center;
+    padding: 40px 20px;
+  }
+
+  .left-panel h1 {
+    font-size: 40px;
+  }
+
+  .left-panel p {
+    font-size: 16px;
+  }
+
+  .right-panel {
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+  }
+}
+
+/* Tablets and small laptops */
+@media (max-width: 800px) {
+  .signup-container {
+    padding: 20px;
+  }
+
+  .role-card {
+    width: 100%;
+    margin-top: 50px;
+  }
+
+  .signup-form {
+    width: 100%;
+    max-width: 360px;
+  }
+
+  .upload-section {
+    padding: 0;
+  }
+
+  .upload-circle {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+/* Mobile Layout */
+@media (max-width: 600px) {
+  .left-panel h1 {
+    font-size: 32px;
+  }
+
+  .signup-container {
+    padding: 20px 10px;
+  }
+
+  .right-panel {
+    padding-top: 10px;
+  }
+
+  .signup-form {
+    width: 100%;
+    max-width: 300px;
+    padding: 0 10px;
+  }
+
+  .role-card {
+    padding: 25px;
+  }
+
+  input {
+    padding: 10px;
+  }
+
+  .submit-btn {
+    padding: 12px;
+    font-size: 16px;
+  }
+}

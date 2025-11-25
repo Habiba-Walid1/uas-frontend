@@ -5,16 +5,22 @@
   min-height: 100vh;
 }
 
+/* ============================= */
+/* TITLE */
+/* ============================= */
 .title {
   font-size: 32px;
   font-weight: 800;
   margin-bottom: 25px;
-  padding:10px;
+  padding: 10px;
   background: linear-gradient(90deg, var(--green), var(--green-light));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
+/* ============================= */
+/* SEARCH BOX */
+/* ============================= */
 .search-box {
   width: 100%;
   padding: 14px;
@@ -25,6 +31,9 @@
   color: var(--text);
 }
 
+/* ============================= */
+/* SECTIONS */
+/* ============================= */
 .card-section {
   background: var(--card);
   padding: 25px;
@@ -33,25 +42,43 @@
   margin-bottom: 35px;
 }
 
+.card-section h2 {
+  margin-bottom: 15px;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* ============================= */
+/* TABLE */
+/* ============================= */
+
 .fees-table {
   width: 100%;
-  table-layout: fixed;
   border-collapse: collapse;
+  table-layout: auto;
 }
 
 .fees-table th,
 .fees-table td {
   padding: 14px;
   border-bottom: 1px solid var(--border);
-  text-align: left;
   vertical-align: middle;
+  text-align: left;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.fees-table td.actions,
+.fees-table th:last-child {
+  width: 120px;
+  max-width: 120px;
 }
 
 .fees-table th {
   color: var(--green);
   font-weight: 700;
 }
-
 
 .badge {
   padding: 6px 12px;
@@ -66,9 +93,12 @@
   color: var(--bg);
 }
 
+/* ACTION BUTTON GROUP */
 .actions {
   display: flex;
-  gap: 12px;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center; 
 }
 
 .pay-btn {
@@ -78,26 +108,32 @@
   padding: 8px 18px;
   border-radius: 10px;
   cursor: pointer;
+  font-weight: 600;
 }
 
 .download-btn {
   background: transparent;
   border: 1px solid var(--green);
   color: var(--green);
-  padding: 8px 18px;
-  border-radius: 10px;
+  padding: 6px 12px;
+  border-radius: 8px;
   cursor: pointer;
+  font-size: 13px;          /* smaller text */
+  white-space: nowrap;      /* prevents wrapping */
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .muted {
   opacity: 0.6;
 }
 
-/**************** MODAL ****************/
+/* ============================= */
+/* PAYMENT MODAL */
+/* ============================= */
 .modal-backdrop {
   position: fixed;
-  top:0; left:0;
-  width:100%; height:100%;
+  inset: 0;
   background: rgba(0,0,0,0.45);
   backdrop-filter: blur(4px);
   z-index: 9000;
@@ -105,9 +141,11 @@
 
 .payment-modal {
   position: fixed;
-  top: 50%; left: 50%;
+  top: 50%;
+  left: 50%;
   transform: translate(-50%, -50%);
   width: 380px;
+  max-width: 92%; /* mobile safe */
   background: var(--card);
   border: 1px solid var(--border);
   padding: 25px;
@@ -147,6 +185,7 @@
   border: none;
   cursor: pointer;
   margin-top: 10px;
+  font-weight: 600;
 }
 
 .close-btn {
@@ -157,4 +196,76 @@
   padding: 12px;
   border-radius: 12px;
   margin-top: 10px;
+}
+
+/* ============================= */
+/* RESPONSIVE BREAKPOINTS */
+/* ============================= */
+
+/* Tablets */
+@media (max-width: 900px) {
+  .fees-container {
+    padding: 25px;
+  }
+
+  .title {
+    font-size: 28px;
+  }
+
+  .fees-table th,
+  .fees-table td {
+    padding: 10px;
+    font-size: 14px;
+  }
+}
+
+/* Small screens */
+@media (max-width: 600px) {
+  .actions {
+    flex-direction: column;
+  }
+
+  .pay-btn,
+  .download-btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .card-section {
+    padding: 18px;
+  }
+
+  .payment-modal {
+    padding: 20px;
+  }
+}
+@media (max-width: 480px) {
+  .download-btn,
+  .pay-btn {
+    padding: 5px 8px;
+    font-size: 12px;
+  }
+
+  .actions {
+    flex-direction: column;
+    gap: 6px;
+  }
+}
+
+
+/* Very small screens */
+@media (max-width: 420px) {
+  .fees-table th,
+  .fees-table td {
+    font-size: 12px;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+
+  .pay-btn, .download-btn {
+    padding: 5px 5px;
+    font-size: 12px;
+  }
 }

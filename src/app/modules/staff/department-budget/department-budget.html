@@ -2,43 +2,33 @@
 
   <h1 class="page-title">Department Budget Management</h1>
 
-  <!-- KPI CARDS -->
   <div class="stats-row">
     <div class="stat income">Income: ${{ totalIncome }}</div>
     <div class="stat expense">Expenses: ${{ totalExpenses }}</div>
     <div class="stat balance">Net Balance: ${{ netBalance }}</div>
   </div>
 
-  <!-- Search + Buttons -->
   <div class="top-actions">
     <input type="text" placeholder="Search..." (input)="search($event.target.value)">
     <button class="add-btn" (click)="openAddModal()">+ Add Entry</button>
     <button class="export-btn" (click)="exportReport()">Export Report</button>
   </div>
 
-  <!-- CHARTS -->
   <div class="chart-grid">
-
-    <!-- PIE / DONUT CHART -->
     <div class="chart-card">
       <h3>Income vs Expenses</h3>
-
       <ngx-charts-pie-chart
         [results]="pieData"
-        [legend]="true"
         [labels]="true"
         [doughnut]="true"
-        [explodeSlices]="false"
         [gradient]="false"
         [scheme]="colorScheme"
-        [view]="[350, 280]">
-      </ngx-charts-pie-chart>
+        [view]="[500, 300]"
+      ></ngx-charts-pie-chart>
     </div>
 
-    <!-- BAR CHART -->
     <div class="chart-card">
       <h3>Monthly Net Balance</h3>
-
       <ngx-charts-bar-vertical
         [results]="barData"
         [scheme]="barColorScheme"
@@ -46,17 +36,14 @@
         [yAxis]="true"
         [showXAxisLabel]="true"
         [showYAxisLabel]="true"
-        [animations]="true"
         [xAxisLabel]="'Month'"
         [yAxisLabel]="'Net $'"
         [roundDomains]="true"
-        [view]="[350, 280]">
-      </ngx-charts-bar-vertical>
+        [view]="[400, 300]"
+      ></ngx-charts-bar-vertical>
     </div>
-
   </div>
 
-  <!-- TABLE -->
   <div class="table-wrapper">
     <table class="budget-table">
       <thead>
@@ -72,9 +59,7 @@
 
       <tbody>
         <tr *ngFor="let r of filtered">
-          <td class="type" [class.income]="r.type === 'income'" [class.expense]="r.type === 'expense'">
-            {{ r.type | titlecase }}
-          </td>
+          <td class="type" [class.income]="r.type === 'income'" [class.expense]="r.type === 'expense'">{{ r.type | titlecase }}</td>
           <td>{{ r.title }}</td>
           <td>${{ r.amount }}</td>
           <td>{{ r.date }}</td>
@@ -87,7 +72,6 @@
     </table>
   </div>
 
-  <!-- MODAL -->
   <div class="overlay" *ngIf="modalOpen">
     <div class="modal">
       <h2>Add Budget Entry</h2>

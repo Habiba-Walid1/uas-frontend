@@ -1,8 +1,11 @@
+/* ===========================
+   PAGE WRAPPER
+=========================== */
 .dashboard-container {
   padding: 40px;
-  position: relative;
   color: var(--text);
   background: var(--bg);
+  position: relative;
 }
 
 .title {
@@ -16,14 +19,18 @@
   margin-bottom: 30px;
 }
 
-/* GRID */
+/* ===========================
+   GRID LAYOUT
+=========================== */
 .dashboard-grid {
   display: grid;
   grid-template-columns: 1.4fr 1fr;
   gap: 35px;
 }
 
-/* LEFT SECTION */
+/* ===========================
+   LEFT SECTION
+=========================== */
 .left-section {
   display: grid;
   gap: 20px;
@@ -57,7 +64,9 @@
   color: var(--green-light);
 }
 
-/* RIGHT SECTION */
+/* ===========================
+   RIGHT SECTION
+=========================== */
 .right-section h3 {
   font-size: 22px;
   margin-bottom: 14px;
@@ -119,21 +128,96 @@
   color: var(--green);
 }
 
-/* ORBS */
+/* ===========================
+   ORBS
+=========================== */
 .orb {
   position: absolute;
   filter: blur(120px);
   opacity: 0.25;
+  z-index: -1;
 }
 
 .orb1 {
-  width: 280px; height: 280px;
+  width: 280px;
+  height: 280px;
   background: var(--green);
-  top: -40px; right: -40px;
+  top: -40px;
+  right: -40px;
 }
 
 .orb2 {
-  width: 240px; height: 240px;
+  width: 240px;
+  height: 240px;
   background: var(--green-light);
-  bottom: 10%; left: -40px;
+  bottom: 10%;
+  left: -40px;
+}
+
+/* ===========================
+   RESPONSIVE BREAKPOINTS
+=========================== */
+
+/* Tablets */
+@media (max-width: 1024px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .right-section {
+    order: -1; /* Calendar goes above cards */
+  }
+
+  .dash-card.big-card {
+    padding: 24px;
+  }
+
+  .title {
+    font-size: 32px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .dashboard-container {
+    padding: 25px;
+  }
+
+  .title {
+    font-size: 28px;
+  }
+
+  .calendar-grid span,
+  .calendar-grid .day {
+    font-size: 13px;
+    padding: 8px;
+  }
+
+  .calendar-grid {
+    gap: 4px;
+  }
+
+  .dash-card {
+    padding: 18px;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 520px) {
+  .calendar-grid {
+    grid-template-columns: repeat(7, minmax(18px, 1fr));
+  }
+
+  .calendar-grid span {
+    font-size: 11px;
+  }
+
+  .day {
+    padding: 6px;
+    font-size: 11px;
+  }
+
+  .highlight {
+    font-size: 16px;
+  }
 }

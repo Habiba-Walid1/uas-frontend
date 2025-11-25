@@ -246,9 +246,40 @@ h1, h2, h3, h4 {
   opacity: 0.35;
 }
 
-.orb1 { width: 320px; height: 320px; background: var(--green); top: -60px; right: -80px; }
-.orb2 { width: 260px; height: 260px; background: var(--green-light); bottom: 140px; left: -60px; }
-.orb3 { width: 220px; height: 220px; background: #14b8a6; bottom: 200px; right: 200px; }
+.orb1 { width: 320px; height: 320px; background: var(--green); top: -60px; right: -80px;
+animation: floatOrb 8s ease-in-out infinite alternate,
+             glowOrb 6s ease-in-out infinite alternate; }
+.orb2 { width: 260px; height: 260px; background: var(--green-light); bottom: 140px; left: -60px; 
+animation: floatOrb 8s ease-in-out infinite alternate,
+             glowOrb 6s ease-in-out infinite alternate;}
+.orb3 { width: 220px; height: 220px; background: #14b8a6; bottom: 200px; right: 200px;
+  animation: floatOrb 8s ease-in-out infinite alternate,
+             glowOrb 6s ease-in-out infinite alternate; }
+/* --- ORB ANIMATIONS --- */
+.fade-up {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 1.2s ease forwards;
+}
+
+@keyframes fadeUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Soft floating movement */
+@keyframes floatOrb {
+  0%   { transform: translate(0, 0) scale(1); }
+  50%  { transform: translate(25px, -30px) scale(1.05); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+
+/* Gentle breathing glow */
+@keyframes glowOrb {
+  0%   { opacity: 0.22; filter: blur(100px); }
+  50%  { opacity: 0.30; filter: blur(110px); }
+  100% { opacity: 0.22; filter: blur(100px); }
+}
 
 /* RESPONSIVE */
 @media (max-width: 900px) {

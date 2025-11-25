@@ -2,10 +2,17 @@
 
   <h1 class="page-title">Manage Users</h1>
 
+  <!-- Search -->
   <div class="search-row">
-    <input type="text" placeholder="Search users..." [(ngModel)]="searchText" (input)="search()" />
+    <input 
+      type="text"
+      placeholder="Search users..." 
+      [(ngModel)]="searchText" 
+      (input)="search()"
+    />
   </div>
 
+  <!-- TABLE -->
   <div class="table-wrapper">
     <table class="users-table">
       <thead>
@@ -14,7 +21,7 @@
           <th>Username</th>
           <th>Email</th>
           <th>Role</th>
-          <th></th>
+          <th class="action-col"></th>
         </tr>
       </thead>
 
@@ -34,13 +41,14 @@
     </table>
   </div>
 
-  <!-- Modal -->
+  <!-- MODAL -->
   <div class="overlay" *ngIf="modalOpen">
     <div class="modal">
 
-      <h2>Edit User</h2>
+      <h2 class="modal-title">Edit User</h2>
 
       <div class="modal-grid">
+
         <label>Full Name</label>
         <input [(ngModel)]="editingUser.fullname" />
 
@@ -56,6 +64,7 @@
           <option value="staff">Staff</option>
           <option value="admin">Admin</option>
         </select>
+
       </div>
 
       <div class="modal-buttons">
