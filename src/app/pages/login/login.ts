@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
+import { CookieService } from '../../services/cookie.service';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +22,10 @@ export class Login {
   errorMsg = '';
   rememberMe = false; // if you don't have the checkbox, this will just stay false
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private cookieService: CookieService
+  ) {}
 
   ngOnInit(): void {
     let users = JSON.parse(localStorage.getItem('users') || '[]');
@@ -45,6 +49,18 @@ export class Login {
       localStorage.setItem('users', JSON.stringify(users));
 
       console.log('✅ Hardcoded admin created');
+    }
+
+    // ✅ NEW: Prefill username + role from cookies if they exist
+    const savedUsername = this.cookieService.getCookie('lastUsername');
+    const savedRole = this.cookieService.getCookie('lastRole');
+
+    if (savedUsername) {
+      this.username = savedUsername;
+    }
+
+    if (savedRole && ['student', 'staff', 'admin'].includes(savedRole)) {
+      this.selectedRole = savedRole as 'student' | 'staff' | 'admin';
     }
   }
 
@@ -81,6 +97,10 @@ export class Login {
     } else {
       localStorage.removeItem('profileSnapshot');
     }
+
+    // ✅ NEW: store safe user-related info in cookies
+    this.cookieService.setCookie('lastUsername', foundUser.username, 7);
+    this.cookieService.setCookie('lastRole', foundUser.role, 7);
 
     // ✅ Redirect exactly like before
     this.router.navigate(['/profile']);
