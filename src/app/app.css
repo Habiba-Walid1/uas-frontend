@@ -1,3 +1,5 @@
+/* Primeng + PrimeIcons moved to global styles (angular.json) to avoid deep-import bundler issues */
+
 .global-orb {
   position: fixed;
   border-radius: 50%;
