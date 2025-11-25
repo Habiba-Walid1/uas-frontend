@@ -19,7 +19,7 @@ export class Login {
   selectedRole: 'student' | 'staff' | 'admin' = 'student';
 
   errorMsg = '';
-  rememberMe = false;   // ✅ NEW: bound to the checkbox in the template
+  rememberMe = false; // if you don't have the checkbox, this will just stay false
 
   constructor(private router: Router) {}
 
@@ -34,7 +34,7 @@ export class Login {
         fullname: 'System Administrator',
         username: 'admin',
         email: 'admin@unipay.com',
-        password: '1',     // You can change the password
+        password: '1', // You can change this later
         role: 'admin',
         staffId: 'ADM-001',
         universityId: null,
@@ -51,7 +51,6 @@ export class Login {
   login() {
     this.errorMsg = '';
 
-    // Basic validation
     if (!this.username || !this.password) {
       this.errorMsg = 'Please fill all fields.';
       return;
@@ -59,9 +58,8 @@ export class Login {
 
     const existingUsers = JSON.parse(localStorage.getItem('users') || '[]');
 
-    // Try to find match
-    const foundUser = existingUsers.find((u: any) =>
-      u.username === this.username && u.password === this.password
+    const foundUser = existingUsers.find(
+      (u: any) => u.username === this.username && u.password === this.password
     );
 
     if (!foundUser) {
@@ -69,10 +67,14 @@ export class Login {
       return;
     }
 
-    // ✅ SESSION STORAGE: active logged-in session (required by M1)
+    // ✅ Session storage: active logged-in user (for assignment requirement)
     sessionStorage.setItem('activeUser', JSON.stringify(foundUser));
 
-    // ✅ LOCAL STORAGE: long-lived data (rememberMe + profile snapshot)
+    // ✅ Local storage: keep old behaviour so guard & other code still work
+    localStorage.setItem('role', foundUser.role);
+    localStorage.setItem('currentUser', JSON.stringify(foundUser));
+
+    // Optional: remember-me behaviour
     localStorage.setItem('rememberMe', JSON.stringify(this.rememberMe));
     if (this.rememberMe) {
       localStorage.setItem('profileSnapshot', JSON.stringify(foundUser));
@@ -80,14 +82,7 @@ export class Login {
       localStorage.removeItem('profileSnapshot');
     }
 
-    // ✅ Redirect based on role
-    const role = foundUser.role;
-    if (role === 'admin') {
-      this.router.navigate(['/admin']);
-    } else if (role === 'staff') {
-      this.router.navigate(['/staff']);
-    } else {
-      this.router.navigate(['/student']);
-    }
+    // ✅ Redirect exactly like before
+    this.router.navigate(['/profile']);
   }
 }
