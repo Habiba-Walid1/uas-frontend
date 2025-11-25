@@ -5,8 +5,13 @@ export const roleGuard: CanActivateFn = (route, state) => {
   const router = inject(Router);
 
   // get current logged-in user
-  const currentUser = localStorage.getItem('currentUser');
-  const user = currentUser ? JSON.parse(currentUser) : null;
+  const sessionUser = sessionStorage.getItem('activeUser');
+  const localUser = localStorage.getItem('currentUser');
+  const user = sessionUser
+    ? JSON.parse(sessionUser)
+    : localUser
+    ? JSON.parse(localUser)
+    : null;
 
   if (!user) {
     // Not logged in → redirect to login
