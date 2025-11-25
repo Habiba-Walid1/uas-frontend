@@ -104,10 +104,11 @@
 .overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0,0,0,0.6);
   display: flex;
   align-items: center;
   justify-content: center;
+  backdrop-filter: blur(4px);
 }
 
 .modal {
@@ -117,12 +118,17 @@
   border-radius: 18px;
   border: 1px solid var(--border);
 }
-
-.modal-grid {
-  display: grid;
-  gap: 12px;
-  margin-top: 15px;
+.modal input,
+.modal select {
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--text);
 }
+
+
 
 .modal-buttons {
   margin-top: 20px;

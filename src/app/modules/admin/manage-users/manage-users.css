@@ -67,6 +67,15 @@
   border: 1px solid var(--border);
 }
 
+.modal input,
+.modal select {
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--text);
+}
 .modal-grid {
   display: grid;
   gap: 14px;
