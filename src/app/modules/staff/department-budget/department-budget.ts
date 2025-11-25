@@ -39,17 +39,13 @@ export class DepartmentBudget implements OnInit {
   pieData: any[] = [];
   barData: any[] = [];
 
-  // DARK MODE COLORS (auto theme matching)
-  textColor = getComputedStyle(document.documentElement).getPropertyValue('--text').trim();
-  borderColor = getComputedStyle(document.documentElement).getPropertyValue('--border').trim();
-  cardColor = getComputedStyle(document.documentElement).getPropertyValue('--card').trim();
-
-  colorScheme = {
-    domain: ['#16a34a', '#ef4444']
+  // Color schemes for charts (typed as any to satisfy ngx-charts input type)
+  colorScheme: any = {
+    domain: ['#10b981', '#ef4444'] // green (income) & red (expenses)
   };
 
-  barColorScheme = {
-    domain: ['#8b5cf6', '#3b82f6', '#14b8a6']
+  barColorScheme: any = {
+    domain: ['#10b981'] // single green tone for net balance bars
   };
 
   ngOnInit() {
@@ -82,7 +78,7 @@ export class DepartmentBudget implements OnInit {
 
   saveRecord() {
     if (!this.title || !this.amount || !this.date || !this.department) {
-      alert("All fields are required.");
+      alert('All fields are required.');
       return;
     }
 
@@ -133,11 +129,13 @@ export class DepartmentBudget implements OnInit {
   }
 
   updateCharts() {
+    // Donut: Income vs Expenses
     this.pieData = [
       { name: 'Income', value: this.totalIncome },
       { name: 'Expenses', value: this.totalExpenses }
     ];
 
+    // Bar: Monthly net balance (income - expenses)
     const grouped: any = {};
 
     this.records.forEach(r => {
@@ -149,7 +147,8 @@ export class DepartmentBudget implements OnInit {
     });
 
     this.barData = Object.keys(grouped).map(m => ({
-      name: m, value: grouped[m]
+      name: m,
+      value: grouped[m]
     }));
   }
 
@@ -167,7 +166,7 @@ export class DepartmentBudget implements OnInit {
 
     const a = document.createElement('a');
     a.href = url;
-    a.download = "Department_Budget_Report.json";
+    a.download = 'Department_Budget_Report.json';
     a.click();
 
     URL.revokeObjectURL(url);

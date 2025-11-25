@@ -4,38 +4,38 @@
   <div class="left-panel">
     <h1>Welcome Back to <span>UniPay</span></h1>
     <p>
-      Secure access to your university financial dashboard.  
+      Secure access to your university financial dashboard.
       Payments, payroll, budgets — all in one place.
     </p>
   </div>
 
-
   <!-- RIGHT SIDE: FORM -->
   <div class="right-panel">
     <form class="login-form" (ngSubmit)="login()">
-    <p class="error-msg" *ngIf="errorMsg">{{ errorMsg }}</p>
+      <!-- ✅ ERROR MESSAGE -->
+      <p class="error-msg" *ngIf="errorMsg">{{ errorMsg }}</p>
 
       <h2>Login to Your Account</h2>
 
       <!-- Role Selector Pills -->
       <div class="role-pills">
-        <button type="button" 
-                class="pill" 
-                [class.active]="selectedRole === 'student'" 
+        <button type="button"
+                class="pill"
+                [class.active]="selectedRole === 'student'"
                 (click)="selectedRole = 'student'">
           Student
         </button>
 
-        <button type="button" 
-                class="pill" 
-                [class.active]="selectedRole === 'staff'" 
+        <button type="button"
+                class="pill"
+                [class.active]="selectedRole === 'staff'"
                 (click)="selectedRole = 'staff'">
           Staff
         </button>
 
-        <button type="button" 
-                class="pill" 
-                [class.active]="selectedRole === 'admin'" 
+        <button type="button"
+                class="pill"
+                [class.active]="selectedRole === 'admin'"
                 (click)="selectedRole = 'admin'">
           Admin
         </button>
@@ -50,6 +50,14 @@
       <div class="form-group">
         <label>Password</label>
         <input type="password" [(ngModel)]="password" name="password" required />
+      </div>
+
+      <!-- ✅ REMEMBER ME CHECKBOX (LOCAL STORAGE) -->
+      <div class="form-group remember">
+        <label>
+          <input type="checkbox" [(ngModel)]="rememberMe" name="rememberMe" />
+          Remember me
+        </label>
       </div>
 
       <button type="submit" class="login-btn">Login</button>
